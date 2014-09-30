@@ -1,0 +1,13 @@
+Propósito que arranque conceptualizando que es un CDR.
+Un parrafo con esa teoría.
+
+En vistas, En estonia tienen una vista de arquitectura donde muestran el sistema de información para todo el país.
+
+Las primeras páginas se muestran todo lo general y el contexto, y al entrar en detalle se muestra lo técnico de la arquitectura.
+
+Programar en la semana una reunión con los arquitectos y el Coronel, para tener claridad en la arquitectura del negocio del proyecto Sisam.
+
+
+Introducción que arranque 
+
+
