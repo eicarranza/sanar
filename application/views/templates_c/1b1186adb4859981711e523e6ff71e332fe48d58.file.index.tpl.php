@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-06-16 01:42:15
+<?php /* Smarty version Smarty-3.1.15, created on 2014-09-30 18:54:28
          compiled from "application\views\templates\especialista\quirurgico\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:4516536d483be3ca60-60315759%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1b1186adb4859981711e523e6ff71e332fe48d58' => 
     array (
       0 => 'application\\views\\templates\\especialista\\quirurgico\\index.tpl',
-      1 => 1402897332,
+      1 => 1412117599,
       2 => 'file',
     ),
     '69edd536ad22a96e4e860274a997e06eee10299c' => 
@@ -422,7 +422,6 @@ especialista/pacientes">
            <h3 class="page-title">
               Procedimiento Quirúrgico: <?php echo $_smarty_tpl->tpl_vars['consulta']->value['nombre1'];?>
  <?php echo $_smarty_tpl->tpl_vars['consulta']->value['apellido1'];?>
- <?php echo $_smarty_tpl->tpl_vars['user']->value['especialidad'];?>
 
            </h3>
            

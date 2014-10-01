@@ -1,13 +1,14 @@
 <div class="row">
     {$errors}
-    <form id="form-nvoPaciente" class="form-horizontal" action="{$url}pacientes/nuevo" method="post" accept-charset="utf-8">
+    <form id="form-nvoPaciente" class="form-horizontal" action="{$url}pacientes/guardarModal" method="post" accept-charset="utf-8">
         <div class="col-md-3">
             <ul class="ver-inline-menu tabbable margin-bottom-10">
                <li class="active">
                   <a data-toggle="tab" href="#tab_1-1"><i class="icon-cog"></i> Personal</a> 
                   <span class="after"></span>                                    
                </li>
-               <li ><a data-toggle="tab" href="#tab_2-2"><i class="icon-picture"></i> Ubicación</a></li>
+               <li ><a data-toggle="tab" href="#tab_2-2"><i class="icon-picture"></i> Familiar</a></li>
+               <li ><a data-toggle="tab" href="#tab_3-3"><i class="icon-picture"></i> Ubicación</a></li>
             </ul>
         </div>
         <div class="col-md-9">
@@ -92,6 +93,48 @@
                    </div>
                 </div>
                 <div id="tab_2-2" class="tab-pane">
+                    <div class="form-group">
+                        <label  class="col-md-4 control-label"> Tipo ID:</label>
+                        <div class="col-md-8">
+                           <select id="fam_tipo_documento" class="form-control" name="fam_tipo_documento" >
+                            <option value="00">- SELECCIONE -</option>
+                            {foreach $tipo_documento as $gs}
+                                <option value="{$gs.id}">{$gs.descripcion}</option>
+                            {/foreach}
+                        </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-md-4 control-label"> Documento:</label>
+                        <div class="col-md-8">
+                            <input type="text" id="fam_identificacion" class="form-control" name="fam_identificacion" maxlength="20" value="" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-md-4 control-label"> Nombre:</label>
+                        <div class="col-md-8">
+                           <input type="text" id="fam_nombre" class="form-control" name="fam_nombre" maxlength="60" value="" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-md-4 control-label"> Parentesco:</label>
+                        <div class="col-md-8">
+                            <select  class="form-control" id="fam_parentesco" name="fam_parentesco" >
+                            <option value="00">- SELECCIONE -</option>
+                            {foreach $parentesco as $gs}
+                                <option value="{$gs.id}">{$gs.descripcion}</option>
+                            {/foreach}
+                        </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-md-4 control-label"> Móvil:</label>
+                        <div class="col-md-8">
+                            <input type="text" id="fam_movil" class="form-control" maxlength="15" name="fam_movil" value="" >
+                        </div>
+                    </div>
+                </div>
+                <div id="tab_3-3" class="tab-pane">
                     <div class="form-group">
                         <label  class="col-md-4 control-label">Departamento</label>
                         <div class="col-md-8">

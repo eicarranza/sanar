@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-06-03 20:22:31
+<?php /* Smarty version Smarty-3.1.15, created on 2014-10-01 10:20:12
          compiled from "application\views\templates\especialista\pacientes.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:162115302f54f3cf571-20456655%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fdaf329e6dc265ca76848e222576cda524b6f439' => 
     array (
       0 => 'application\\views\\templates\\especialista\\pacientes.tpl',
-      1 => 1398965829,
+      1 => 1412133112,
       2 => 'file',
     ),
     '69edd536ad22a96e4e860274a997e06eee10299c' => 
@@ -405,55 +405,28 @@ especialista/pacientes">
      <!-- BEGIN PAGE CONTENT-->
      <div class="row">
         <div class="col-md-12">
-               <!-- BEGIN EXAMPLE TABLE PORTLET-->
+               <!-- BEGIN LIST PATIENT-->
                <div class="portlet box grey">
-                  <div class="portlet-title">
-                     <div class="caption"><i class="icon-user"></i>Pacientes</div>
-                  </div>
-                  <div class="portlet-body">
-                     <table class="table table-striped table-bordered table-hover" id="sample_2">
-                        <thead>
-                           <tr>
-                              <th style="width1:8px;"><input type="checkbox" class="group-checkable" data-set="#sample_2 .checkboxes" /></th>
-                              <th>Identificacion</th>
-                              <th >Nombre</th>
-                              <th >Apellido</th>
-                              <th >Telefono</th>
-                              <th >Correo</th>
-                              <th >Consultas</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                            <?php  $_smarty_tpl->tpl_vars['i'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['i']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['_pacientes']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['i']->key => $_smarty_tpl->tpl_vars['i']->value) {
-$_smarty_tpl->tpl_vars['i']->_loop = true;
-?>
-                            	<tr class="odd gradeX">
-                                  <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                  <td><?php echo $_smarty_tpl->tpl_vars['i']->value['identificacion'];?>
-</td>
-                                  <td><?php echo $_smarty_tpl->tpl_vars['i']->value['nombre1'];?>
- <?php echo $_smarty_tpl->tpl_vars['i']->value['nombre2'];?>
-</td>
-                                  <td><?php echo $_smarty_tpl->tpl_vars['i']->value['apellido1'];?>
- <?php echo $_smarty_tpl->tpl_vars['i']->value['apellido2'];?>
-</td>
-                                  <td><?php echo $_smarty_tpl->tpl_vars['i']->value['telefono'];?>
-</td>
-                                  <td ><?php echo $_smarty_tpl->tpl_vars['i']->value['email'];?>
-</td>
-                                  <td><a class="btn default btn-xs purple" data-toggle="modal" onclick="pacienteConsultas('<?php echo $_smarty_tpl->tpl_vars['i']->value['paciente_id'];?>
-');">
-                                          <i class="icon-edit"></i> Consultas</a>
-                                  </td>
-                               </tr>
-                            <?php } ?>
-                        </tbody>
-                     </table>
-                  </div>
-               </div>
-               <!-- END EXAMPLE TABLE PORTLET-->
+                    <div class="portlet-title">
+                      <div class="caption"><i class="icon-user"></i>Pacientes</div>
+                    </div>
+
+                    <div class="portlet-body">
+                        <div id="sample_2_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="dataTables_filter" id="sample_2_filter">
+                                        <label>Buscar: <input type="text" id="txt_buscar" aria-controls="sample_2" class="form-control input-small"></label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="contenedor">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               <!-- END LIST PATIENT -->
             </div>
      </div>
      <!-- END PAGE CONTENT-->
@@ -568,7 +541,21 @@ assets/scripts/table-managed.js"></script>
 	 App.init();
 	 TableManaged.init();
          
-         
+        $("#contenedor").load("<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
+/especialista/pacientesLista");
+        $(document).on("click", "#pagination-digg li a", function(e){
+            e.preventDefault();
+            var href = $(this).attr("href");
+            $("#contenedor").load(href);
+        });
+        
+        $( "#txt_buscar" ).keyup(function() {
+            var buscar = $( '#txt_buscar' ).val();
+            buscar = buscar.replace(" ", "");
+            var href = "<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
+/especialista/pacientesLista/0/"+buscar;
+            $("#contenedor").load(href);
+        });
   });
   
   
@@ -576,7 +563,6 @@ assets/scripts/table-managed.js"></script>
         var postData = {
                         'paciente_id': paciente_id
                     };
-                    
         $.post('<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
 especialista/pacienteConsultas', postData, function(data){
                 $('#dv_paciente').empty();

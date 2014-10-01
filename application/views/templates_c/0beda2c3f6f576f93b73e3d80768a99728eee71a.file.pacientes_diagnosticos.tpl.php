@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-05-02 17:35:05
+<?php /* Smarty version Smarty-3.1.15, created on 2014-09-30 18:19:09
          compiled from "application\views\templates\especialista\pacientes_diagnosticos.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:24914530c26cfc10616-23825914%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0beda2c3f6f576f93b73e3d80768a99728eee71a' => 
     array (
       0 => 'application\\views\\templates\\especialista\\pacientes_diagnosticos.tpl',
-      1 => 1399066503,
+      1 => 1412115528,
       2 => 'file',
     ),
   ),
@@ -54,11 +54,18 @@ $_smarty_tpl->tpl_vars['i']->_loop = true;
  - <?php echo $_smarty_tpl->tpl_vars['i']->value['cie_descripcion'];?>
 "><?php echo $_smarty_tpl->tpl_vars['i']->value['cie_descripcion'];?>
 </label></td>
-                        <td>  <a class="btn default btn-xs purple" data-toggle="modal" href="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
+                        <td>
+                            <?php if ($_smarty_tpl->tpl_vars['i']->value['cita_tipo_id']==2) {?>
+                                <a class="btn default btn-xs purple" data-toggle="modal" href="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
+especialista/cirugia/<?php echo $_smarty_tpl->tpl_vars['i']->value['id'];?>
+">
+                                    <i class="icon-edit"></i>Procedimiento</a>
+                            <?php } else { ?>
+                                <a class="btn default btn-xs purple" data-toggle="modal" href="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
 especialista/consulta/<?php echo $_smarty_tpl->tpl_vars['i']->value['id'];?>
 ">
-                                <i class="icon-edit"></i> Ver</a>
-                            </a>
+                                    <i class="icon-edit"></i>Consulta</a>
+                            <?php }?>
                         </td>
                    </tr>
                <?php } ?>

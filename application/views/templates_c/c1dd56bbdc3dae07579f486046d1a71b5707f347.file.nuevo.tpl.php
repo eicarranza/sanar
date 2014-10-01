@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-07-14 22:00:33
+<?php /* Smarty version Smarty-3.1.15, created on 2014-10-01 12:14:31
          compiled from "application\views\templates\paciente\nuevo.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:712152845bc31dbe65-18408930%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c1dd56bbdc3dae07579f486046d1a71b5707f347' => 
     array (
       0 => 'application\\views\\templates\\paciente\\nuevo.tpl',
-      1 => 1394866126,
+      1 => 1412180069,
       2 => 'file',
     ),
     '69edd536ad22a96e4e860274a997e06eee10299c' => 
@@ -690,47 +690,12 @@ $_smarty_tpl->tpl_vars['gs']->_loop = true;
                                 </div>
                              </div>
                              <div class="portlet-body">
-                                 <div class="btn-group">
+                                <div class="btn-group">
                                     <a id="btn-familiar" class="btn green" data-toggle="modal" href="#responsive">Agregar <i class="icon-plus"></i></a>
-                                 </div>
-                                 <table class="table table-striped table-hover">
-                                    <thead>
-                                       <tr>
-                                          <th>Parentesco</th>
-                                          <th>Nombre</th>
-                                          <th >Móvil</th>
-                                          <th>Ver</th>
-                                          <th>Eliminar</th>
-                                       </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php  $_smarty_tpl->tpl_vars['i'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['i']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['_familiar']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['i']->key => $_smarty_tpl->tpl_vars['i']->value) {
-$_smarty_tpl->tpl_vars['i']->_loop = true;
-?>
-                                        <tr>
-                                           <td><?php echo $_smarty_tpl->tpl_vars['i']->value['id'];?>
-</td>
-                                           <td><?php echo $_smarty_tpl->tpl_vars['i']->value['nombre'];?>
-</td>
-                                           <td><?php echo $_smarty_tpl->tpl_vars['i']->value['movil'];?>
-</td>
-                                           <td >
-                                               <a id="fam_<?php echo $_smarty_tpl->tpl_vars['i']->value['id'];?>
-" data-toggle="modal" href="#responsive">
-                                                   <img src="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
-assets/img/icons/user_edit.png" onclick="registrarFamiliar(<?php echo $_smarty_tpl->tpl_vars['i']->value['id'];?>
-, <?php echo $_smarty_tpl->tpl_vars['id']->value;?>
-)"/>
-                                               </a>
-                                           </td>
-                                           <td><span class="label label-sm label-success">Approved</span></td>
-                                        </tr>
-                                    <?php } ?>
-                                    </tbody>
-                                </table>
-                                 
+                                </div>    
+                                <div id="dv_familiares">
+                                   
+                                </div>
                             </div>
                             <!-- END FAMILY FORM-->
                         </div>
@@ -985,6 +950,11 @@ assets/scripts/form-components.js"></script>
          FormComponents.init();
          UIExtendedModals.init();
          
+         //$("#dv_familiares").load("<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
+/pacientes/familiares/<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
+");
+         consultarFamiliar();
+         
         $('#dp-fecha').datepicker({
             language: "es",
         });
@@ -1000,7 +970,9 @@ assets/scripts/form-components.js"></script>
                 alert("El registro ha sido guardado.");
             }, 'json');
             
-           return false;
+            $("#responsive").modal('hide');
+            consultarFamiliar();
+            return false;
         });
         
          $("#depto_id").change(function () {
@@ -1042,9 +1014,23 @@ pacientes/familiar/"+familiar_id+"/"+paciente_id,
        return false;
     }
     
+    function consultarFamiliar(){
+         $("#dv_familiares").load("<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
+/pacientes/familiares/"+<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
+);
+    }
+    
     function eliminar(id){
         window.location.href = '<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
-pacientes/hcdigitalEliminar/'+id;
+pacientes/hcdigitalEliminar/'+id+'/'+<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
+;
+        return false;
+    }
+    
+    function eliminarFamiliar(id){
+        window.location.href = '<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
+pacientes/familiaresEliminar/'+id+'/'+<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
+;
         return false;
     }
     </script>

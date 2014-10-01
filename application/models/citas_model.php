@@ -320,7 +320,7 @@ class Citas_model extends CI_Model {
                                        $servicio_id, 
                                        $valor
                                       )); 
-        print $this->db->last_query();
+        //print $this->db->last_query();
         return ;
     }
  

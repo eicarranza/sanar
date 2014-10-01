@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-02-20 00:19:16
+<?php /* Smarty version Smarty-3.1.15, created on 2014-10-01 12:29:43
          compiled from "application\views\templates\paciente\familiar.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1493452ce2c8df03758-60534634%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8135f5ba6d3f54c9d800337383a3b83cd65b4e9a' => 
     array (
       0 => 'application\\views\\templates\\paciente\\familiar.tpl',
-      1 => 1390580976,
+      1 => 1412180950,
       2 => 'file',
     ),
   ),
@@ -39,7 +39,7 @@ pacientes/familiar/<?php echo $_smarty_tpl->tpl_vars['familiar_id']->value;?>
                 <div class="form-group">
                     <label  class="col-md-3 control-label">Tipo ID: </label>
                     <div class="col-md-9">
-                        <select id="tipo_documento" class="form-control" name="tipo_documento" >
+                        <select id="fam_tipo_documento" class="form-control" name="fam_tipo_documento" >
                             <option value="00">- SELECCIONE -</option>
                             <?php  $_smarty_tpl->tpl_vars['gs'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['gs']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['tipo_documento']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
@@ -57,7 +57,7 @@ $_smarty_tpl->tpl_vars['gs']->_loop = true;
                 <div class="form-group">
                     <label  class="col-md-3 control-label">Nombre: </label>
                     <div class="col-md-9">
-                        <input type="text" id="nombre" class="form-control" name="nombre" maxlength="60" value="<?php if (($_smarty_tpl->tpl_vars['familiar_id']->value>0)) {?><?php echo $_smarty_tpl->tpl_vars['familiar']->value['nombre'];?>
+                        <input type="text" id="fam_nombre" class="form-control" name="fam_nombre" maxlength="60" value="<?php if (($_smarty_tpl->tpl_vars['familiar_id']->value>0)) {?><?php echo $_smarty_tpl->tpl_vars['familiar']->value['nombre'];?>
 <?php }?>" required>
                     </div>
                 </div>
@@ -65,7 +65,7 @@ $_smarty_tpl->tpl_vars['gs']->_loop = true;
                 <div class="form-group">
                     <label  class="col-md-3 control-label">Año nac: </label>
                     <div class="col-md-9">
-                        <input type="number" id="nacimiento" class="form-control" name="nacimiento" maxlength="60" value="<?php if (($_smarty_tpl->tpl_vars['familiar_id']->value>0)) {?><?php echo $_smarty_tpl->tpl_vars['familiar']->value['anho_nacimiento'];?>
+                        <input type="number" id="fam_nacimiento" class="form-control" name="fam_nacimiento" maxlength="60" value="<?php if (($_smarty_tpl->tpl_vars['familiar_id']->value>0)) {?><?php echo $_smarty_tpl->tpl_vars['familiar']->value['anho_nacimiento'];?>
 <?php }?>" required>
                     </div>
                 </div>
@@ -73,7 +73,7 @@ $_smarty_tpl->tpl_vars['gs']->_loop = true;
                 <div class="form-group">
                     <label  class="col-md-3 control-label">Ocupación: </label>
                     <div class="col-md-9">
-                        <input type="text" id="ocupacion" class="form-control" name="ocupacion" maxlength="60" value="<?php if (($_smarty_tpl->tpl_vars['familiar_id']->value>0)) {?><?php echo $_smarty_tpl->tpl_vars['familiar']->value['ocupacion'];?>
+                        <input type="text" id="fam_ocupacion" class="form-control" name="fam_ocupacion" maxlength="60" value="<?php if (($_smarty_tpl->tpl_vars['familiar_id']->value>0)) {?><?php echo $_smarty_tpl->tpl_vars['familiar']->value['ocupacion'];?>
 <?php }?>" required>
                     </div>
                 </div>
@@ -81,7 +81,7 @@ $_smarty_tpl->tpl_vars['gs']->_loop = true;
                 <div class="form-group">
                     <label  class="col-md-3 control-label">Dirección: </label>
                     <div class="col-md-9">
-                          <input type="text" id="direccion" class="form-control" maxlength="80"  name="direccion" value="<?php if (($_smarty_tpl->tpl_vars['familiar_id']->value>0)) {?><?php echo $_smarty_tpl->tpl_vars['familiar']->value['direccion'];?>
+                          <input type="text" id="fam_direccion" class="form-control" maxlength="80"  name="fam_direccion" value="<?php if (($_smarty_tpl->tpl_vars['familiar_id']->value>0)) {?><?php echo $_smarty_tpl->tpl_vars['familiar']->value['direccion'];?>
 <?php }?>" >
                     </div>
                 </div>
@@ -90,7 +90,7 @@ $_smarty_tpl->tpl_vars['gs']->_loop = true;
                 <div class="form-group">
                   <label class="col-md-3 control-label">Documento: </label>
                   <div class="col-md-9">
-                         <input type="text" id="identificacion" class="form-control" name="identificacion" maxlength="20" value="<?php if (($_smarty_tpl->tpl_vars['familiar_id']->value>0)) {?><?php echo $_smarty_tpl->tpl_vars['familiar']->value['identificacion'];?>
+                         <input type="text" id="fam_identificacion" class="form-control" name="fam_identificacion" maxlength="20" value="<?php if (($_smarty_tpl->tpl_vars['familiar_id']->value>0)) {?><?php echo $_smarty_tpl->tpl_vars['familiar']->value['identificacion'];?>
 <?php }?>" required>
                          <input type="hidden" id="paciente_id" name="paciente_id" value="<?php echo $_smarty_tpl->tpl_vars['paciente_id']->value;?>
 " required>
@@ -101,7 +101,7 @@ $_smarty_tpl->tpl_vars['gs']->_loop = true;
                 <div class="form-group">
                     <label  class="col-md-3 control-label">Parentesco: </label>
                     <div class="col-md-9">
-                        <select  class="form-control" id="parentesco" name="parentesco" >
+                        <select  class="form-control" id="fam_parentesco" name="fam_parentesco" >
                             <option value="00">- SELECCIONE -</option>
                             <?php  $_smarty_tpl->tpl_vars['gs'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['gs']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['parentesco']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
@@ -119,7 +119,7 @@ $_smarty_tpl->tpl_vars['gs']->_loop = true;
                 <div class="form-group">
                     <label  class="col-md-3 control-label">Vive: </label>
                     <div class="col-md-9">
-                       <select  class="form-control" id="vive" name="vive" >
+                       <select  class="form-control" id="fam_vive" name="fam_vive" >
                             <option value="S" <?php if (($_smarty_tpl->tpl_vars['familiar_id']->value>0)) {?><?php if (($_smarty_tpl->tpl_vars['familiar']->value['vive']=="S")) {?>selected<?php }?><?php }?>>Si</option>
                             <option value="N" <?php if (($_smarty_tpl->tpl_vars['familiar_id']->value>0)) {?><?php if (($_smarty_tpl->tpl_vars['familiar']->value['vive']=="N")) {?>selected<?php }?><?php }?>>No</option>
                        </select>
@@ -131,7 +131,7 @@ $_smarty_tpl->tpl_vars['gs']->_loop = true;
                     <div class="col-md-9">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="icon-envelope"></i></span>
-                        <input type="email" id="email" class="form-control" placeholder="Correo electrónico" name="email"  maxlength="80" value="<?php if (($_smarty_tpl->tpl_vars['familiar_id']->value>0)) {?><?php echo $_smarty_tpl->tpl_vars['familiar']->value['email'];?>
+                        <input type="email" id="fam_email" class="form-control" placeholder="Correo electrónico" name="fam_email"  maxlength="80" value="<?php if (($_smarty_tpl->tpl_vars['familiar_id']->value>0)) {?><?php echo $_smarty_tpl->tpl_vars['familiar']->value['email'];?>
 <?php }?>" />
                       </div>
                     </div>
@@ -140,14 +140,14 @@ $_smarty_tpl->tpl_vars['gs']->_loop = true;
                 <div class="form-group">
                     <label  class="col-md-3 control-label" name="telefono" >Teléfono: </label>
                     <div class="col-md-9">
-                        <input type="text" id="telefono" class="form-control" maxlength="15"  name="telefono" value="<?php if (($_smarty_tpl->tpl_vars['familiar_id']->value>0)) {?><?php echo $_smarty_tpl->tpl_vars['familiar']->value['telefono'];?>
+                        <input type="text" id="fam_telefono" class="form-control" maxlength="15"  name="fam_telefono" value="<?php if (($_smarty_tpl->tpl_vars['familiar_id']->value>0)) {?><?php echo $_smarty_tpl->tpl_vars['familiar']->value['telefono'];?>
 <?php }?>" >
                     </div>
                   </div>
                 <div class="form-group">
                     <label  class="col-md-3 control-label">Móvil: </label>
                     <div class="col-md-9">
-                        <input type="text" id="movil" class="form-control" maxlength="15" name="movil" value="<?php if (($_smarty_tpl->tpl_vars['familiar_id']->value>0)) {?><?php echo $_smarty_tpl->tpl_vars['familiar']->value['movil'];?>
+                        <input type="text" id="fam_movil" class="form-control" maxlength="15" name="fam_movil" value="<?php if (($_smarty_tpl->tpl_vars['familiar_id']->value>0)) {?><?php echo $_smarty_tpl->tpl_vars['familiar']->value['movil'];?>
 <?php }?>" >
                     </div>
                 </div>
@@ -155,20 +155,4 @@ $_smarty_tpl->tpl_vars['gs']->_loop = true;
             </div>
         </div>
     </form>
-</div>
-
-                    
-
-    <script>
-    jQuery(document).ready(function() {
-        $("#btn-cita-guardar").click(function () {
-                $.post($('#form-familiar').attr('action'), $('#form-familiar').serialize(), function(json){
-                alert("El registro ha sido guardado.");
-            }, 'json');
-
-           return false;
-        });
-    });
-    </script>    
-
-    <?php }} ?>
+</div>    <?php }} ?>

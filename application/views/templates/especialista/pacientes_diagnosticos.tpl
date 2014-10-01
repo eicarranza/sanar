@@ -15,9 +15,14 @@
                         <td>{$i.motivo|truncate:50:"...":true}</td>
                         <!--<td><label title="{$i.enfermedad_actual}">{$i.enfermedad_actual|truncate:50:"...":true}</label></td>-->
                         <td><label title="{$i.codigo} - {$i.cie_descripcion}">{$i.cie_descripcion}</label></td>
-                        <td>  <a class="btn default btn-xs purple" data-toggle="modal" href="{$url}especialista/consulta/{$i.id}">
-                                <i class="icon-edit"></i> Ver</a>
-                            </a>
+                        <td>
+                            {if $i.cita_tipo_id == 2}
+                                <a class="btn default btn-xs purple" data-toggle="modal" href="{$url}especialista/cirugia/{$i.id}">
+                                    <i class="icon-edit"></i>Procedimiento</a>
+                            {else}
+                                <a class="btn default btn-xs purple" data-toggle="modal" href="{$url}especialista/consulta/{$i.id}">
+                                    <i class="icon-edit"></i>Consulta</a>
+                            {/if}
                         </td>
                    </tr>
                {/foreach}

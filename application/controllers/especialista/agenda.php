@@ -10,6 +10,7 @@ class Agenda extends Private_Controller {
         $this->load->model('Familiar_model');
         $this->load->model('Consulta_model');
         $this->load->model('Citas_model');
+        $this->load->library('pagination');
     }
 
     public function index($page = 'home')
@@ -117,8 +118,7 @@ class Agenda extends Private_Controller {
         $url = $this->config->base_url();
         $user = $this->session->userdata("logged_user");
         $rol = $this->session->userdata("user_rol");
-        $_pacientes = $this->Paciente_model->get_all();
-
+        
         $data = array(
                 'title' => 'Clínica Sanar',
                 'menu_id' => 8,
@@ -129,8 +129,35 @@ class Agenda extends Private_Controller {
         if(!@$this->user) redirect ('pages/login');
 
         $this->smarty->assign('_rol', $rol);
-        $this->smarty->assign('_pacientes', $_pacientes);
         $this->smarty->view( 'especialista/pacientes.tpl', $data );
+    }
+    
+    public function listaPacientes($offset='', $buscar='')
+    {   
+        $limit = 10;
+        $total = $this->Paciente_model->count_pacientes($buscar);
+      
+        $config['base_url'] = $this->config->site_url()."/especialista/pacientesLista/";
+        $config['total_rows'] = $total;
+        $config['per_page'] = $limit;
+        $config['uri_segment'] = '3';
+        $this->pagination->initialize($config);
+        $pag_links = $this->pagination->create_links();
+
+        $_pacientes = $this->Paciente_model->list_pacientes($limit, $offset, $buscar);
+        $url = $this->config->base_url();
+        $user = $this->session->userdata("logged_user");
+
+          $data = array(
+                  'title' => 'Clínica Sanar',
+                  'menu_id' => 1,
+                  'url' => $url,
+                  'user' => $user,
+                  'pag_links' => $pag_links
+          );
+
+          $this->smarty->assign('pacientes', $_pacientes);
+          $this->smarty->view('especialista/lista_pacientes.tpl', $data);
     }
     
     public function pacienteConsultas()

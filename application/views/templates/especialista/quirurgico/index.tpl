@@ -36,7 +36,7 @@
         <div class="col-md-12">
            <!-- BEGIN PAGE TITLE & BREADCRUMB-->
            <h3 class="page-title">
-              Procedimiento Quirúrgico: {$consulta.nombre1} {$consulta.apellido1} {$user.especialidad}
+              Procedimiento Quirúrgico: {$consulta.nombre1} {$consulta.apellido1}
            </h3>
            
            <ul class="page-breadcrumb breadcrumb">

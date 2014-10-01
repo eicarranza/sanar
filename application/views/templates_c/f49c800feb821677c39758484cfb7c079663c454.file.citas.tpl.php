@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-06-14 09:09:40
+<?php /* Smarty version Smarty-3.1.15, created on 2014-10-01 13:04:54
          compiled from "application\views\templates\agenda\citas.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:5052d0a86e6edaf7-06481215%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f49c800feb821677c39758484cfb7c079663c454' => 
     array (
       0 => 'application\\views\\templates\\agenda\\citas.tpl',
-      1 => 1402751262,
+      1 => 1412183054,
       2 => 'file',
     ),
     '69edd536ad22a96e4e860274a997e06eee10299c' => 
@@ -571,9 +571,14 @@ agenda/nuevaCita" method="post" accept-charset="utf-8">
                     </div>
                    <div class="form-group">
                       <label  class="col-md-4 control-label">Identificación (*)</label>
-                      <div class="col-md-8">
+                      <div class="col-md-6">
                          <input type="text" class="form-control input-medium" id="mdl_citaIdentificacion" name="mdl_citaIdentificacion" maxlength="45" required>
                       </div>
+                        <div class="col-md-2">
+                            <a id="btn-buscar-id" href="javascript:void(0);" class="btn blue">
+                               <i class="icon-search"></i>
+                           </a>
+                        </div>
                    </div>
                    <div class="form-group">
                       <label  class="col-md-4 control-label">Paciente</label>
@@ -686,7 +691,7 @@ assets/scripts/ui-extended-modals.js"></script>
 assets/plugins/clockface/js/clockface.js"></script>
     <script type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
 assets/plugins/bootstrap-daterangepicker/moment.min.js"></script>
-    <!-- END MODAL -->
+    <!-- PAGE LEVEL PLUGINS -->
     <script type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
 assets/plugins/bootstrap-fileupload/bootstrap-fileupload.js"></script>
     <script type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
@@ -709,6 +714,7 @@ assets/plugins/jquery.input-ip-address-control-1.0.min.js"></script>
 assets/plugins/jquery-multi-select/js/jquery.multi-select.js"></script>
     <script src="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
 assets/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js" type="text/javascript" ></script>
+    
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script src="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
@@ -724,14 +730,20 @@ assets/scripts/form-components.js"></script>
         FormComponents.init();
         UIExtendedModals.init();
 
-        $( "#mdl_citaIdentificacion" )
-            .change(function() {
-                var paciente = $( '#mdl_citaIdentificacion' ).val();
-                
-                pacienteFueraHorario(paciente);
-        })
-        .keyup();
-      
+        $( "#mdl_citaIdentificacion" ).keypress(function( event ) {
+          if ( event.which == 13 ) {
+            event.preventDefault();
+            var paciente = $( '#mdl_citaIdentificacion' ).val();
+            //alert("Enter");
+            pacienteFueraHorario(paciente);
+          }
+        });
+        
+        $('#btn-buscar-id').click(function () {
+            var paciente = $( '#mdl_citaIdentificacion' ).val();
+            pacienteFueraHorario(paciente);
+        });
+        
         $('#dp-fecha').datepicker({
             language: "es",
         });
@@ -783,6 +795,7 @@ assets/scripts/form-components.js"></script>
                 mostrarPaciente(paciente, fecha, horaini);
             }
             else{
+                //alert("En btn-paciente-guardar");
                 pacienteFueraHorario(paciente);
             }
             
@@ -873,7 +886,6 @@ pacientes/nuevoModal/"+paciente+"/"+horaini,
     
     function pacienteFueraHorario(paciente){
         consultarPaciente(paciente, "0", function(url){
-            //alert(url);
             $('#mdl_citaPaciente').attr('value', url[0]);
             $('#mdl_citaPacienteHidden').attr('value', url[1]);
         });

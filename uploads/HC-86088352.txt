@@ -1,0 +1,38 @@
+Acceso hapi
+
+DATOS DEL SERVIDOR.
+
+Dirección IP :	217.160.206.215
+Nombre del servidor :	s15759986.onlinehome-server.info
+Estado del host :	Disponible
+Sistema operativo :	CentOS 5 con Parallels SB Panel 10 (64 bit)
+
+
+Tiene creada una cuenta de usuario para acceder via PLESK
+
+Enlace :	 https://217.160.206.215:8443
+Usuario :	upauserpanel
+Contraseña :	up4p4ssp4nel
+
+
+Alli puede generar bases de datos PostgreSQL en el dominio que seleccione de momento sera upacolombia.com.co que es donde esta la pagina web la aplicación en principio ira el el subdominio hapi.upacolombia.com.co (hay una ya creada vacia llamada hapi con usario:h4piuser pass:h4pip4ss)
+
+Acceso ftp
+
+user: up4ftpuser
+pass: up4ftpp4ss
+
+
+hapi.upacolombia.com.co
+usuario: 	h4piuser y password: h4pip4ss
+ftp es 	user:h4piftpuser y password: h4piftpp4ss
+
+
+Acceso Admin Plesk:
+user: admin
+pass: 811111034AD
+
+Acceso SSH
+ip:217.160.206.215
+user:root
+pass:TtgtzNjj

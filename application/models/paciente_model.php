@@ -99,9 +99,11 @@ class Paciente_model extends CI_Model {
 
                 if ($query->num_rows() <= 0){
                     $this->db->insert('paciente', $data);
+                    $id = $this->db->insert_id();
+                    $this->db->trans_complete();
                 }
         }
-        return ;
+        return $id;
     }
 
 }

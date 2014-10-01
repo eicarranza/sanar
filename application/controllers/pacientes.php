@@ -159,8 +159,8 @@ class Pacientes extends Private_Controller {
         $this->smarty->assign('errors',validation_errors()); 
         $this->smarty->assign('form_familiar',form_open('pacientes/familiar')); 
 
-        $this->form_validation->set_rules('identificacion', 'Identificación', 'required');
-        $this->form_validation->set_rules('nombre', 'Nombre:', 'required');
+        $this->form_validation->set_rules('fam_identificacion', 'fam_Identificación', 'required');
+        $this->form_validation->set_rules('fam_nombre', 'fam_Nombre:', 'required');
 
         if($this->form_validation->run() == FALSE)
         {
@@ -170,8 +170,39 @@ class Pacientes extends Private_Controller {
         else
         {
             $asdf = $this->Familiar_model->set_familiar();
-            echo json_encode(array('st'=>1, 'msg'=>'Registro guardado con éxito. '.$asdf));
+            json_encode(array('st'=>1, 'msg'=>'Registro guardado con éxito. '.$asdf));
         }
+    }
+    
+    public function familiares($id = 0)
+    {
+        if(!@$this->user) redirect ('pages/login');
+
+        $url = $this->config->base_url();
+        $user = $this->session->userdata("logged_user");
+        $familiar = array();
+        
+        if($id != 0)
+        {
+            $familiar = $this->Familiar_model->get_paciente_familiar($id);
+        }
+
+        $data = array(
+                'title' => 'Clínica Sanar',
+                'menu_id' => 1,
+                'url' => $url,
+                'user' => $user,
+                '_familiar' => $familiar,
+                'id' => $id
+        );
+
+        $this->smarty->view( 'paciente/familiares.tpl', $data );
+    }
+    
+    public function familiaresEliminar($familiar_id=0, $paciente_id=0)
+    {
+        $this->Familiar_model->del_familiarPaciente($familiar_id, $paciente_id);
+        redirect ('pacientes/nuevo/'.$paciente_id);
     }
     
     public function hcdigital($id=0)
@@ -198,10 +229,10 @@ class Pacientes extends Private_Controller {
             $str = "El documento ha sido cargado correctamente.";
         }
         
-        redirect ('pacientes/nuevo/'.$user['id']);
+        redirect ('pacientes/nuevo/'.$id);
     }
     
-    public function hcdigitalEliminar($id=0)
+    public function hcdigitalEliminar($id=0, $paciente_id=0)
     {
         $user = $this->session->userdata("logged_user");
         $archivo = $this->Paciente_Archivo_model->get($id);
@@ -214,8 +245,7 @@ class Pacientes extends Private_Controller {
         }
         
         $this->Paciente_Archivo_model->del_pacienteArchivo($id);
-        redirect ('pacientes/nuevo/'.$user['id']);
-        
+        redirect ('pacientes/nuevo/'.$paciente_id);
     }
     
     public function nuevoModal($id = 0, $horaini = 0)
@@ -232,6 +262,7 @@ class Pacientes extends Private_Controller {
         $departamento = $this->Configuracion_model->get_departamento();
         $municipio = array();
         $estado_civil = $this->Configuracion_model->get_estado_civil();
+        $parentesco = $this->Configuracion_model->get_parentesco();
         
         $data = array(
                 'title' => 'Clínica Sanar',
@@ -241,6 +272,7 @@ class Pacientes extends Private_Controller {
                 'grupo_sanguineo' => $grupo_sanguineo,
                 'departamento' => $departamento,
                 'municipio' => $municipio,
+                'parentesco' => $parentesco,
                 'estado_civil' => $estado_civil,
                 'user' => $user,
                 'paciente' => $paciente,
@@ -267,6 +299,11 @@ class Pacientes extends Private_Controller {
             $this->Paciente_model->set_paciente();
             echo json_encode(array('st'=>1, 'msg'=>'Registro guardado con éxito. '.$asdf));
         }
+    }
+    
+    public function guardarModal($id=0){
+        $paciente_id = $this->Paciente_model->set_paciente();
+        $asdf = $this->Familiar_model->set_familiar($paciente_id);
     }
 }
 

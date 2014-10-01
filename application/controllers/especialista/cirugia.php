@@ -54,7 +54,7 @@ class Cirugia extends Private_Controller {
             // PREGUNTAR SI EXISTE CONSULTA
             $consulta = $this->Consulta_model->get_consulta($cita_id);
             if(count($consulta)==0){
-                $this->Consulta_model->set($cita_id, $paciente_id, $especialista_id, $fecha);
+                $this->Consulta_model->set($cita_id, $paciente_id, $especialista_id, $fecha, PROCEDIMIENTO_QUIRURGICO);
             }
             
             $documentos_cirujano = $this->Configuracion_model->get_tipo_documento_quirurgico(2);

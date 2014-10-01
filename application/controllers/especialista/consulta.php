@@ -55,11 +55,11 @@ class Consulta extends Private_Controller {
                 $lastConsulta = $this->Consulta_model->get_lastConsulta($paciente_id);
                 if(count($lastConsulta)>0){
                     $this->Consulta_model->set($cita_id, $paciente_id, $especialista_id, 
-                            $fecha, $lastConsulta['peso'], $lastConsulta['talla'], 
-                            $lastConsulta['imc']);
+                            $fecha, CONSULTA_EXTERNA, $lastConsulta['peso'], 
+                            $lastConsulta['talla'], $lastConsulta['imc']);
                 }
                 else{
-                    $this->Consulta_model->set($cita_id, $paciente_id, $especialista_id, $fecha);
+                    $this->Consulta_model->set($cita_id, $paciente_id, $especialista_id, $fecha, CONSULTA_EXTERNA);
                 }
             }
             //  SI NO, OBTENER LOS DATOS DE CONSULTA ANTERIOR SI EXISTE Y GUARDAR

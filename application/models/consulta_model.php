@@ -56,16 +56,17 @@ class Consulta_model extends CI_Model {
         return $query->row_array();
     }
     
-    public function set($id, $paciente_id, $especialista_id, $fecha, $peso=0, 
-                            $talla=0, $imc=0)
+    public function set($id, $paciente_id, $especialista_id, $fecha, $procedimiento=1,
+                            $peso=0, $talla=0, $imc=0)
     {
         $sql = 'INSERT INTO consulta(id, paciente_id, especialista_id, fecha_consulta,
-                                        peso, talla, imc)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
+                                        cita_tipo_id, peso, talla, imc)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                 ON DUPLICATE KEY UPDATE 
                     paciente_id = VALUES(paciente_id), 
                     especialista_id = VALUES(especialista_id), 
                     fecha_consulta = VALUES(fecha_consulta),
+                    cita_tipo_id = VALUES(cita_tipo_id),
                     peso = VALUES(peso),
                     talla = VALUES(talla),
                     imc = VALUES(imc) ';
@@ -73,7 +74,7 @@ class Consulta_model extends CI_Model {
         $query = $this->db->query($sql, array( $id, 
                                        $paciente_id, 
                                        $especialista_id, 
-                                       $fecha, $peso, $talla, $imc
+                                       $fecha, $procedimiento, $peso, $talla, $imc
                                       )); 
 
         return ;
@@ -343,12 +344,13 @@ class Consulta_model extends CI_Model {
         $this->db->select('c.id, diagnostico_id, DATE(fecha_consulta) AS fecha, '
                 . 'cie.codigo, motivo, enfermedad_actual, tratamiento, '
                 . 'GROUP_CONCAT(cie.descripcion SEPARATOR "<br>") as cie_descripcion, '
-                . 'GROUP_CONCAT(cd.descripcion SEPARATOR "<br>") as cd_descripcion');
+                . 'GROUP_CONCAT(cd.descripcion SEPARATOR "<br>") as cd_descripcion, '
+                . ' cita_tipo_id');
         $this->db->from('consulta as c');
         $this->db->join('consulta_diagnostico as cd', 'c.id = cd.consulta_id', 'left');
         $this->db->join('cnf_cie10 as cie', 'cd.diagnostico_id = cie.id', 'left');
         $this->db->where($condicion);
-        $this->db->group_by("fecha", "desc");
+        $this->db->group_by("c.id", "desc");
         $this->db->order_by("fecha", "desc");          
         $query = $this->db->get();
         //print $this->db->last_query();

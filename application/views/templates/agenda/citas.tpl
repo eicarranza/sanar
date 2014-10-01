@@ -177,9 +177,14 @@
                     </div>
                    <div class="form-group">
                       <label  class="col-md-4 control-label">Identificación (*)</label>
-                      <div class="col-md-8">
+                      <div class="col-md-6">
                          <input type="text" class="form-control input-medium" id="mdl_citaIdentificacion" name="mdl_citaIdentificacion" maxlength="45" required>
                       </div>
+                        <div class="col-md-2">
+                            <a id="btn-buscar-id" href="javascript:void(0);" class="btn blue">
+                               <i class="icon-search"></i>
+                           </a>
+                        </div>
                    </div>
                    <div class="form-group">
                       <label  class="col-md-4 control-label">Paciente</label>
@@ -216,7 +221,7 @@
     <!-- TIME PICKER -->
     <script type="text/javascript" src="{$url}assets/plugins/clockface/js/clockface.js"></script>
     <script type="text/javascript" src="{$url}assets/plugins/bootstrap-daterangepicker/moment.min.js"></script>
-    <!-- END MODAL -->
+    <!-- PAGE LEVEL PLUGINS -->
     <script type="text/javascript" src="{$url}assets/plugins/bootstrap-fileupload/bootstrap-fileupload.js"></script>
     <script type="text/javascript" src="{$url}assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="{$url}assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.es.js"></script>
@@ -228,6 +233,7 @@
     <script type="text/javascript" src="{$url}assets/plugins/jquery.input-ip-address-control-1.0.min.js"></script>
     <script type="text/javascript" src="{$url}assets/plugins/jquery-multi-select/js/jquery.multi-select.js"></script>
     <script src="{$url}assets/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js" type="text/javascript" ></script>
+    
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script src="{$url}assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>  
@@ -240,14 +246,22 @@
         FormComponents.init();
         UIExtendedModals.init();
 
-        $( "#mdl_citaIdentificacion" )
-            .change(function() {
-                var paciente = $( '#mdl_citaIdentificacion' ).val();
-                
-                pacienteFueraHorario(paciente);
-        })
-        .keyup();
-      
+        /*
+        $( "#mdl_citaIdentificacion" ).keypress(function( event ) {
+          if ( event.which == 13 ) {
+            event.preventDefault();
+            var paciente = $( '#mdl_citaIdentificacion' ).val();
+            //alert("Enter");
+            pacienteFueraHorario(paciente);
+          }
+        });
+        */
+       
+        $('#btn-buscar-id').click(function () {
+            var paciente = $( '#mdl_citaIdentificacion' ).val();
+            pacienteFueraHorario(paciente);
+        });
+        
         $('#dp-fecha').datepicker({
             language: "es",
         });
@@ -299,6 +313,7 @@
                 mostrarPaciente(paciente, fecha, horaini);
             }
             else{
+                //alert("En btn-paciente-guardar");
                 pacienteFueraHorario(paciente);
             }
             
@@ -386,7 +401,6 @@
     
     function pacienteFueraHorario(paciente){
         consultarPaciente(paciente, "0", function(url){
-            //alert(url);
             $('#mdl_citaPaciente').attr('value', url[0]);
             $('#mdl_citaPacienteHidden').attr('value', url[1]);
         });

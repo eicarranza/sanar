@@ -262,36 +262,12 @@
                                 </div>
                              </div>
                              <div class="portlet-body">
-                                 <div class="btn-group">
+                                <div class="btn-group">
                                     <a id="btn-familiar" class="btn green" data-toggle="modal" href="#responsive">Agregar <i class="icon-plus"></i></a>
-                                 </div>
-                                 <table class="table table-striped table-hover">
-                                    <thead>
-                                       <tr>
-                                          <th>Parentesco</th>
-                                          <th>Nombre</th>
-                                          <th >Móvil</th>
-                                          <th>Ver</th>
-                                          <th>Eliminar</th>
-                                       </tr>
-                                    </thead>
-                                    <tbody>
-                                    {foreach $_familiar as $i}
-                                        <tr>
-                                           <td>{$i.id}</td>
-                                           <td>{$i.nombre}</td>
-                                           <td>{$i.movil}</td>
-                                           <td >
-                                               <a id="fam_{$i.id}" data-toggle="modal" href="#responsive">
-                                                   <img src="{$url}assets/img/icons/user_edit.png" onclick="registrarFamiliar({$i.id}, {$id})"/>
-                                               </a>
-                                           </td>
-                                           <td><span class="label label-sm label-success">Approved</span></td>
-                                        </tr>
-                                    {/foreach}
-                                    </tbody>
-                                </table>
-                                 
+                                </div>    
+                                <div id="dv_familiares">
+                                   
+                                </div>
                             </div>
                             <!-- END FAMILY FORM-->
                         </div>
@@ -446,6 +422,9 @@
          FormComponents.init();
          UIExtendedModals.init();
          
+         //$("#dv_familiares").load("{$url}/pacientes/familiares/{$id}");
+         consultarFamiliar();
+         
         $('#dp-fecha').datepicker({
             language: "es",
         });
@@ -460,7 +439,9 @@
                 alert("El registro ha sido guardado.");
             }, 'json');
             
-           return false;
+            $("#responsive").modal('hide');
+            consultarFamiliar();
+            return false;
         });
         
          $("#depto_id").change(function () {
@@ -500,8 +481,17 @@
        return false;
     }
     
+    function consultarFamiliar(){
+         $("#dv_familiares").load("{$url}/pacientes/familiares/"+{$id});
+    }
+    
     function eliminar(id){
-        window.location.href = '{$url}pacientes/hcdigitalEliminar/'+id;
+        window.location.href = '{$url}pacientes/hcdigitalEliminar/'+id+'/'+{$id};
+        return false;
+    }
+    
+    function eliminarFamiliar(id){
+        window.location.href = '{$url}pacientes/familiaresEliminar/'+id+'/'+{$id};
         return false;
     }
     </script>
