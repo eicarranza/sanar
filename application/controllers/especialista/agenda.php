@@ -67,6 +67,7 @@ class Agenda extends Private_Controller {
         $especialista_id = "";
         $edad = "";
         $consulta_tipo = "";
+        $administradora = "";
         $cita_tipo_id = 0;
         
         if (count($cita) > 0){
@@ -92,6 +93,7 @@ class Agenda extends Private_Controller {
             
             $facturacion = $this->Citas_model->get_facturacion($id);
             if(count($facturacion) > 0){
+                $administradora = $facturacion['administradora'];
                 $consulta_tipo = $facturacion['descripcion'];
             }
         }
@@ -107,6 +109,7 @@ class Agenda extends Private_Controller {
                 'fecha' => $fecha,
                 'especialista' => $especialista_id,
                 'consulta_tipo' => $consulta_tipo,
+                'administradora' => $administradora,
                 'cita_tipo_id' => $cita_tipo_id
         );
 

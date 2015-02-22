@@ -46,6 +46,8 @@
                     </button>
                     <ul class="dropdown-menu pull-right" role="menu">
                         <li><a href="#" id="btn-imprimir-historia" name="consulta_activa">Imprimir informe</a></li>
+                        <li><a href="#" id="btn-imprimir-evolucion" name="consulta_activa">Imprimir evolución</a></li>
+                        <li><a href="#" id="btn-imprimir-notas" name="consulta_activa">Imprimir notas</a></li>
                         <li><a href="#" id="btn-cerrar-consulta" name="consulta_activa">Cerrar informe</a></li>
                         <li class="divider"></li>
                         <li><a href="{$url}especialista/index">Salir</a></li>
@@ -988,6 +990,31 @@
             FormComponents.init();
             getAnestesia();
             verificarEdicion();
+            calcularIMC();
+            
+            $( "#peso" )
+                .change(function() {
+                    calcularIMC();
+                })
+            .keyup();
+            
+            $( "#talla" )
+                .change(function() {
+                    calcularIMC();
+                })
+            .keyup();
+            
+            $('#btn-imprimir-historia').click(function () {
+                imprimirHistoria(this);
+            });
+            
+            $('#btn-imprimir-evolucion').click(function () {
+                imprimirEvolucion(this);
+            });
+            
+            $('#btn-imprimir-notas').click(function () {
+                imprimirNotas(this);
+            });
             
             $( "#des-cups" ).autocomplete({
                     source: function(request, response) {
@@ -1360,6 +1387,59 @@
             });
         }
         
+        function setConsulta(campo){
+            postData = getData(campo);
+            $.post('{$url}especialista/setConsulta', postData, function(data){
+            });
+        }
+        
+        function calcularIMC(){
+            var peso = $('#peso').attr('value');
+            var talla = $('#talla').attr('value');
+            var imc = 0;
+            
+            talla = talla / 100;
+            if(talla>0){
+                imc = peso / (talla * talla);
+                imc = Math.round(imc * 100) / 100;
+            }
+            
+            $('#imc').attr('value', imc);
+            setIMC();
+        }
+        
+        function setIMC(){
+            var consulta_id = $('#consulta_id').attr('value');
+            
+            var postData = {
+                            'consulta_id': consulta_id, 
+                            'campo' : 'imc',
+                            'valor' : $('#imc').attr('value')
+                         };
+                         
+            $.post('{$url}especialista/setConsulta', postData, function(data){ });
+        }
+        
+        function setAPersonales(campo){
+            postData = getData(campo);
+            $.post('{$url}especialista/setAPersonales', postData, function(data){});
+        }
+        
+        function setConsultaExamen(campo){
+            postData = getData(campo);
+            $.post('{$url}especialista/setConsultaAnestesiaExamen', postData, function(data){});
+        }
+        
+        function setConsultaLaboratorios(campo){
+            postData = getData(campo);
+            $.post('{$url}especialista/setConsultaLaboratorios', postData, function(data){});
+        }
+        
+        function setAnestesiaPlan(campo){
+            postData = getData(campo);
+            $.post('{$url}especialista/setAnestesiaPlan', postData, function(data){});
+        }
+        
         function setCirugiaTime(){
             var consulta_id = $('#consulta_id').attr('value');
             var fecha = $('#_fecha').attr('value');
@@ -1388,6 +1468,20 @@
             });
         }
         
+        function imprimirHistoria(campo){
+            postData = getData(campo);
+            open('POST', '{$url}reportes/informeQuirurgico', postData, '_blank');
+        }
+        
+        function imprimirEvolucion(campo){
+            postData = getData(campo);
+            open('POST', '{$url}reportes/imprimirEvolucion', postData, '_blank');
+        }
+        
+        function imprimirNotas(campo){
+            postData = getData(campo);
+            open('POST', '{$url}reportes/imprimirNotas', postData, '_blank');
+        }
     </script>
 
 {/block}

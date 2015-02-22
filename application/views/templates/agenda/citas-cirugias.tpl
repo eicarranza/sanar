@@ -456,11 +456,13 @@
         var cita_id = $('#cita_id').attr('value');
         var servicio_id = $('#servicio_id').attr('value');
         var valor = $('#valor').attr('value');
+        var administradora_id = $('#administradora_id').attr('value');
         
         var postData = {
                             'cita_id': cita_id, 
                             'servicio_id' : servicio_id,
-                            'valor' : valor
+                            'valor' : valor,
+                            'administradora_id' : administradora_id
                          };
                          
         $.post('{$url}agenda/setFacturacion', postData, function(data){

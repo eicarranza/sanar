@@ -21,7 +21,7 @@ class Consulta_model extends CI_Model {
                             . 'perimetro_toraxico, frecuencia_cardiaca, frecuencia_respiratoria, '
                             . 'tension_arterial, temperatura_maxilar, alimentacion, evolucion, '
                             . 'finalidad_consulta, causa_externa, medicacion, tratamiento, '
-                            . 'recomendaciones, observacion, consulta_activa');
+                            . 'recomendaciones, observacion, consulta_activa, especialista_id');
         $this->db->from('consulta');
         $this->db->join('paciente', 'paciente.paciente_id = consulta.paciente_id', 'left');
         $this->db->where($condicion);
@@ -312,6 +312,7 @@ class Consulta_model extends CI_Model {
         $this->db->join('cnf_cups as cups', 'cp.procedimiento_id = cups.id');
         $this->db->where($condicion);
         $query = $this->db->get();
+        //print $this->db->last_query();
         return $query->result_array();
         
     }

@@ -17,6 +17,17 @@
           </div>
        </div>
         <div class="form-group">
+            <label  class="col-md-4 control-label">Administradora:</label>
+            <div class="col-md-8">
+                <select  class="form-control" name="administradora_id"  id="administradora_id" >
+                    <option value="0">- SELECCIONE -</option>
+                    {foreach $_administradora as $i}
+                            <option value="{$i.id}" {if ($existe_factura)}{if ($facturacion['administradora_id']==$i.id)}selected{/if}{/if}>{$i.descripcion}</option>
+                    {/foreach}
+                </select>
+          </div>
+        </div>
+        <div class="form-group">
             <label  class="col-md-4 control-label">Concepto Servicio:</label>
             <div class="col-md-8">
                 <select  class="form-control" name="consulta_tipo"  id="consulta_tipo" >

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-10-01 10:20:12
+<?php /* Smarty version Smarty-3.1.15, created on 2014-10-05 21:57:01
          compiled from "application\views\templates\especialista\pacientes.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:162115302f54f3cf571-20456655%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fdaf329e6dc265ca76848e222576cda524b6f439' => 
     array (
       0 => 'application\\views\\templates\\especialista\\pacientes.tpl',
-      1 => 1412133112,
+      1 => 1412262757,
       2 => 'file',
     ),
     '69edd536ad22a96e4e860274a997e06eee10299c' => 
@@ -542,7 +542,7 @@ assets/scripts/table-managed.js"></script>
 	 TableManaged.init();
          
         $("#contenedor").load("<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
-/especialista/pacientesLista");
+especialista/pacientesLista");
         $(document).on("click", "#pagination-digg li a", function(e){
             e.preventDefault();
             var href = $(this).attr("href");
@@ -553,7 +553,7 @@ assets/scripts/table-managed.js"></script>
             var buscar = $( '#txt_buscar' ).val();
             buscar = buscar.replace(" ", "");
             var href = "<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
-/especialista/pacientesLista/0/"+buscar;
+especialista/pacientesLista/0/"+buscar;
             $("#contenedor").load(href);
         });
   });

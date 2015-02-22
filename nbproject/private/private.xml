@@ -3,14 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/sanar/application/controllers/pacientes.php</file>
+            <file>file:/C:/xampp/htdocs/sanar/application/views/templates/agenda/facturacion-modal.tpl</file>
             <file>file:/C:/xampp/htdocs/sanar/application/models/citas_model.php</file>
             <file>file:/C:/xampp/htdocs/sanar/application/controllers/agenda.php</file>
-            <file>file:/C:/xampp/htdocs/sanar/application/views/templates/especialista/consulta.tpl</file>
-            <file>file:/C:/xampp/htdocs/sanar/application/views/templates/agenda/citas.tpl</file>
-            <file>file:/C:/xampp/htdocs/sanar/application/views/templates/index.tpl</file>
-            <file>file:/C:/xampp/htdocs/sanar/application/models/paciente_model.php</file>
-            <file>file:/C:/xampp/htdocs/sanar/application/views/templates/especialista/quirurgico/index.tpl</file>
+            <file>file:/C:/xampp/htdocs/sanar/application/controllers/configuracion.php</file>
+            <file>file:/C:/xampp/htdocs/sanar/application/views/templates/configuracion/administradora/index.tpl</file>
+            <file>file:/C:/xampp/htdocs/sanar/application/views/templates/especialista/paciente.tpl</file>
+            <file>file:/C:/xampp/htdocs/sanar/application/models/configuracion_model.php</file>
+            <file>file:/C:/xampp/htdocs/sanar/application/views/templates/layout.tpl</file>
+            <file>file:/C:/xampp/htdocs/sanar/application/controllers/configuracion/administradora.php</file>
             <file>file:/C:/xampp/htdocs/sanar/application/config/routes.php</file>
         </group>
     </open-files>

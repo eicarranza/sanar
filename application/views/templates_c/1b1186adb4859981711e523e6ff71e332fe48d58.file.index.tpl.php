@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-09-30 18:54:28
+<?php /* Smarty version Smarty-3.1.15, created on 2014-10-05 23:07:45
          compiled from "application\views\templates\especialista\quirurgico\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:4516536d483be3ca60-60315759%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1b1186adb4859981711e523e6ff71e332fe48d58' => 
     array (
       0 => 'application\\views\\templates\\especialista\\quirurgico\\index.tpl',
-      1 => 1412117599,
+      1 => 1412564857,
       2 => 'file',
     ),
     '69edd536ad22a96e4e860274a997e06eee10299c' => 
@@ -432,6 +432,8 @@ especialista/pacientes">
                     </button>
                     <ul class="dropdown-menu pull-right" role="menu">
                         <li><a href="#" id="btn-imprimir-historia" name="consulta_activa">Imprimir informe</a></li>
+                        <li><a href="#" id="btn-imprimir-evolucion" name="consulta_activa">Imprimir evolución</a></li>
+                        <li><a href="#" id="btn-imprimir-notas" name="consulta_activa">Imprimir notas</a></li>
                         <li><a href="#" id="btn-cerrar-consulta" name="consulta_activa">Cerrar informe</a></li>
                         <li class="divider"></li>
                         <li><a href="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
@@ -1595,6 +1597,31 @@ assets/plugins/jquery.ui.autocomplete.html.js"></script>
             FormComponents.init();
             getAnestesia();
             verificarEdicion();
+            calcularIMC();
+            
+            $( "#peso" )
+                .change(function() {
+                    calcularIMC();
+                })
+            .keyup();
+            
+            $( "#talla" )
+                .change(function() {
+                    calcularIMC();
+                })
+            .keyup();
+            
+            $('#btn-imprimir-historia').click(function () {
+                imprimirHistoria(this);
+            });
+            
+            $('#btn-imprimir-evolucion').click(function () {
+                imprimirEvolucion(this);
+            });
+            
+            $('#btn-imprimir-notas').click(function () {
+                imprimirNotas(this);
+            });
             
             $( "#des-cups" ).autocomplete({
                     source: function(request, response) {
@@ -1983,6 +2010,65 @@ especialista/setCirugia', postData, function(data){
             });
         }
         
+        function setConsulta(campo){
+            postData = getData(campo);
+            $.post('<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
+especialista/setConsulta', postData, function(data){
+            });
+        }
+        
+        function calcularIMC(){
+            var peso = $('#peso').attr('value');
+            var talla = $('#talla').attr('value');
+            var imc = 0;
+            
+            talla = talla / 100;
+            if(talla>0){
+                imc = peso / (talla * talla);
+                imc = Math.round(imc * 100) / 100;
+            }
+            
+            $('#imc').attr('value', imc);
+            setIMC();
+        }
+        
+        function setIMC(){
+            var consulta_id = $('#consulta_id').attr('value');
+            
+            var postData = {
+                            'consulta_id': consulta_id, 
+                            'campo' : 'imc',
+                            'valor' : $('#imc').attr('value')
+                         };
+                         
+            $.post('<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
+especialista/setConsulta', postData, function(data){ });
+        }
+        
+        function setAPersonales(campo){
+            postData = getData(campo);
+            $.post('<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
+especialista/setAPersonales', postData, function(data){});
+        }
+        
+        function setConsultaExamen(campo){
+            postData = getData(campo);
+            $.post('<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
+especialista/setConsultaAnestesiaExamen', postData, function(data){});
+        }
+        
+        function setConsultaLaboratorios(campo){
+            postData = getData(campo);
+            $.post('<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
+especialista/setConsultaLaboratorios', postData, function(data){});
+        }
+        
+        function setAnestesiaPlan(campo){
+            postData = getData(campo);
+            $.post('<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
+especialista/setAnestesiaPlan', postData, function(data){});
+        }
+        
         function setCirugiaTime(){
             var consulta_id = $('#consulta_id').attr('value');
             var fecha = $('#_fecha').attr('value');
@@ -2014,6 +2100,23 @@ especialista/index';
             });
         }
         
+        function imprimirHistoria(campo){
+            postData = getData(campo);
+            open('POST', '<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
+reportes/informeQuirurgico', postData, '_blank');
+        }
+        
+        function imprimirEvolucion(campo){
+            postData = getData(campo);
+            open('POST', '<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
+reportes/imprimirEvolucion', postData, '_blank');
+        }
+        
+        function imprimirNotas(campo){
+            postData = getData(campo);
+            open('POST', '<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
+reportes/imprimirNotas', postData, '_blank');
+        }
     </script>
 
 

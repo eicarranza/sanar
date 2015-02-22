@@ -11,6 +11,7 @@ class Historia extends CI_Controller {
         $this->load->model('Paciente_model');
         $this->load->model('Citas_model');
         $this->load->model('Consulta_model');
+        $this->load->model('Consulta_Cirugia_model', 'cirugia');
         $this->load->model('Configuracion_model');
         $this->load->model('Usuario_model');
         $this->load->model('Familiar_model');
@@ -38,6 +39,7 @@ class Historia extends CI_Controller {
         
         $paciente_id = $this->input->post('paciente_id');
         $paciente = $this->Paciente_model->get($paciente_id);
+
         $historial_consultas = $this->Consulta_model->get_historialConsultas($paciente_id);
         $familiar = $this->Familiar_model->get_paciente_familiar($paciente_id);
         $aPersonales = $this->Consulta_model->get_aPersonales($paciente_id);
@@ -329,5 +331,158 @@ class Historia extends CI_Controller {
         
         $this->load->view('reportes/procedimiento', $data);        
     }
+    
+    public function informeQuirurgico() {
+        $user = $this->session->userdata("logged_user");
+        $url = $this->config->base_url();
+        $this->load->helper('pdf_helper');
+        $fecha = "08/03/2013";
+        $consulta = array();
+        $diagnostico = array();
+        $diagnosticos = array();
+        $especialista = array();
+        $procedimiento = array();
+        $especialista_id = array();
+        
+        $paciente_id = $this->input->post('paciente_id');
+        $consulta_id = $this->input->post('consulta_id');
+        $paciente = $this->Paciente_model->get($paciente_id);
+
+        $consulta = $this->Consulta_model->get_Consulta($consulta_id);
+        $cirugia = $this->cirugia->get_Cirugia($consulta_id);
+        
+        $diagnostico_pre = $this->Consulta_model->get_diagnostico($consulta_id, PREOPERATORIO);
+        $diagnostico_pos = $this->Consulta_model->get_diagnostico($consulta_id, POSTOPERATORIO);
+        $procedimientos = $this->cirugia->get_procedimiento($consulta_id);
+        
+        $especialista['cirujano'] = $this->Usuario_model->get_id($consulta['especialista_id']);
+            
+
+
+        
+        $data = array(
+                'user' => $user,
+                'url' => $url,
+                'cliente' => 'CLÍNICA SANAR LTDA',
+                'logo' => $url."assets/img/logo-azul.png",
+                'codigo' => "FR-CS-26-V01",
+                'vigencia' => "08/03/2013",
+                'titulo' => "HOJA DE ATENCION INICIAL",
+                'titulo2' => "INFORME QUIRÚRGICO",
+                'subtitulo' => "GESTION DOCUMENTAL",
+                'fecha' => $fecha,
+                'paciente' => $paciente,
+                'consulta' => $consulta,
+                'cirugia' => $cirugia,
+                'diagnostico_pre' => $diagnostico_pre,
+                'diagnostico_pos' => $diagnostico_pos,
+                'procedimientos' => $procedimientos,
+                'especialista' => $especialista,
+                'especialista_id' => $especialista_id,
+            );
+        
+        
+        $this->load->view('reportes/informeQuirurgico', $data);        
+    }
+    
+    
+    public function imprimirEvolucion() {
+        $user = $this->session->userdata("logged_user");
+        $url = $this->config->base_url();
+        $this->load->helper('pdf_helper');
+        $fecha = "08/01/2013";
+        $evolucion = array();
+        $especialista = array();
+        $especialista_id = array();
+        
+        $paciente_id = $this->input->post('paciente_id');
+        $consulta_id = $this->input->post('consulta_id');
+        $paciente = $this->Paciente_model->get($paciente_id);
+        $evolucion = $this->cirugia->get_evolucion($consulta_id);
+        
+        if($paciente['anhos']>0){ 
+            $edad_anhos = $paciente['anhos']; 
+            $edad = $edad_anhos." Años";
+        }
+        elseif($paciente['meses']>0){
+            $edad_meses = $paciente['meses'];
+            $edad = $edad_anhos." Meses";
+        }
+        elseif($paciente['dias']>0){
+            $edad_meses = $paciente['dias']; 
+            $edad = $edad_anhos." Días";
+        }
+        
+        $data = array(
+                'user' => $user,
+                'url' => $url,
+                'cliente' => 'CLÍNICA SANAR LTDA',
+                'logo' => $url."assets/img/logo-azul.png",
+                'codigo' => "FR-CS-16-V01",
+                'vigencia' => "08/03/2013",
+                'titulo' => "HOJA DE ATENCION INICIAL",
+                'titulo2' => "HOJA DE EVOLUCIÓN",
+                'subtitulo' => "GESTION DOCUMENTAL",
+                'fecha' => $fecha,
+                'paciente' => $paciente,
+                'evoluciones' => $evolucion,
+                'especialista' => $especialista,
+                'especialista_id' => $especialista_id,
+                'edad' => $edad,
+            );
+        
+        
+        $this->load->view('reportes/hojaEvolucion', $data);        
+    }
+    
+    public function imprimirNotas() {
+        $user = $this->session->userdata("logged_user");
+        $url = $this->config->base_url();
+        $this->load->helper('pdf_helper');
+        $fecha = "08/01/2013";
+        $evolucion = array();
+        $especialista = array();
+        $especialista_id = array();
+        
+        $paciente_id = $this->input->post('paciente_id');
+        $consulta_id = $this->input->post('consulta_id');
+        $paciente = $this->Paciente_model->get($paciente_id);
+        $notas = $this->cirugia->get_notas($consulta_id);
+        
+        if($paciente['anhos']>0){ 
+            $edad_anhos = $paciente['anhos']; 
+            $edad = $edad_anhos." Años";
+        }
+        elseif($paciente['meses']>0){
+            $edad_meses = $paciente['meses'];
+            $edad = $edad_anhos." Meses";
+        }
+        elseif($paciente['dias']>0){
+            $edad_meses = $paciente['dias']; 
+            $edad = $edad_anhos." Días";
+        }
+        
+        $data = array(
+                'user' => $user,
+                'url' => $url,
+                'cliente' => 'CLÍNICA SANAR LTDA',
+                'logo' => $url."assets/img/logo-azul.png",
+                'codigo' => "FR-CS-22-V01",
+                'vigencia' => "08/03/2013",
+                'titulo' => "HOJA DE ATENCION INICIAL",
+                'titulo2' => "NOTAS DE ENFERMERÍA",
+                'subtitulo' => "GESTION DOCUMENTAL",
+                'fecha' => $fecha,
+                'paciente' => $paciente,
+                'notas' => $notas,
+                'especialista' => $especialista,
+                'especialista_id' => $especialista_id,
+                'edad' => $edad,
+            );
+        
+        
+        $this->load->view('reportes/notasEnfermeria', $data);        
+    }
+    
     
 }

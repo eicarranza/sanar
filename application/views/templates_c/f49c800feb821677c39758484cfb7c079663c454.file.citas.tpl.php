@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-10-01 13:04:54
+<?php /* Smarty version Smarty-3.1.15, created on 2014-11-17 22:38:46
          compiled from "application\views\templates\agenda\citas.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:5052d0a86e6edaf7-06481215%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f49c800feb821677c39758484cfb7c079663c454' => 
     array (
       0 => 'application\\views\\templates\\agenda\\citas.tpl',
-      1 => 1412183054,
+      1 => 1416281853,
       2 => 'file',
     ),
     '69edd536ad22a96e4e860274a997e06eee10299c' => 
     array (
       0 => 'application\\views\\templates\\layout.tpl',
-      1 => 1401593640,
+      1 => 1415062014,
       2 => 'file',
     ),
   ),
@@ -321,6 +321,21 @@ agenda/cirugia">
                 </li>
             <?php }?>
             <?php if ($_smarty_tpl->tpl_vars['i']->value['rol_id']==3) {?>
+                <li class="<?php if ($_smarty_tpl->tpl_vars['menu_id']->value==4) {?> active <?php }?>">
+                    <a href="javascript:;">
+                    <i class="icon-cogs"></i> 
+                    <span class="title">Configuración</span>
+                    <span class="arrow "></span>
+                    </a>
+                    <ul class="sub-menu">
+                       <li >
+                          <a href="form_controls.html">
+                          Información institucional</a>
+                       </li>
+                    </ul>
+                </li>
+            <?php }?>
+            <?php if ($_smarty_tpl->tpl_vars['i']->value['rol_id']==9) {?>
                 <li class="<?php if ($_smarty_tpl->tpl_vars['menu_id']->value==4) {?> active <?php }?>">
                     <a href="javascript:;">
                     <i class="icon-cogs"></i> 
@@ -730,6 +745,7 @@ assets/scripts/form-components.js"></script>
         FormComponents.init();
         UIExtendedModals.init();
 
+        /*
         $( "#mdl_citaIdentificacion" ).keypress(function( event ) {
           if ( event.which == 13 ) {
             event.preventDefault();
@@ -738,7 +754,8 @@ assets/scripts/form-components.js"></script>
             pacienteFueraHorario(paciente);
           }
         });
-        
+        */
+       
         $('#btn-buscar-id').click(function () {
             var paciente = $( '#mdl_citaIdentificacion' ).val();
             pacienteFueraHorario(paciente);
@@ -931,15 +948,18 @@ agenda/facturar/"+cita_id,
         var cita_id = $('#cita_id').attr('value');
         var servicio_id = $('#servicio_id').attr('value');
         var valor = $('#valor').attr('value');
+        var administradora_id = $('#administradora_id').attr('value');
         var postData = {
                             'cita_id': cita_id, 
                             'servicio_id' : servicio_id,
-                            'valor' : valor
+                            'valor' : valor,
+                            'administradora_id' : administradora_id
                          };
                          
         $.post('<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
 agenda/setFacturacion', postData, function(data){
-            alert("La facturación se ha procesado correctamente.");
+            alert(data);
+            //alert("La facturación se ha procesado correctamente.");
         });
         $("#facturacion").modal('hide');
         

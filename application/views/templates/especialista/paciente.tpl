@@ -28,26 +28,32 @@
               <input type="hidden" name="especialista" value="{$especialista}" required>
               <div class="row">
                     <div class="form-group">
-                       <label class="control-label col-md-6">Edad: </label>
-                       <div class="col-md-6">
+                       <label class="control-label col-md-5">Edad: </label>
+                       <div class="col-md-7">
                           <p class="form-control-static">{$edad}</p>
                        </div>
                     </div>
                     <div class="form-group">
-                       <label class="control-label col-md-6">Fecha nacimiento:</label>
-                       <div class="col-md-6">
+                       <label class="control-label col-md-5">Fecha nacimiento:</label>
+                       <div class="col-md-7">
                           <p class="form-control-static">{$paciente.fecha_nacimiento}</p>
                        </div>
                     </div>
                     <div class="form-group">
-                       <label class="control-label col-md-6">Tipo de Consulta:</label>
-                       <div class="col-md-6">
+                       <label class="control-label col-md-5">Administradora:</label>
+                       <div class="col-md-7">
+                          <p class="form-control-static">{$administradora}</p>
+                       </div>
+                    </div>
+                    <div class="form-group">
+                       <label class="control-label col-md-5">Tipo de Consulta:</label>
+                       <div class="col-md-7">
                           <p class="form-control-static">{$consulta_tipo}</p>
                        </div>
                     </div>
                     <div class="form-group">
-                       <label class="control-label col-md-6">Familiares:</label>
-                        <div class="col-md-6">
+                       <label class="control-label col-md-5">Familiares:</label>
+                        <div class="col-md-7">
                             {foreach $familiar as $i}
                                 <p class="form-control-static">{$i.nombre}</p>
                             {/foreach}

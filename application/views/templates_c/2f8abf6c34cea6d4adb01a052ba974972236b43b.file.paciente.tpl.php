@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-05-31 23:31:34
+<?php /* Smarty version Smarty-3.1.15, created on 2014-11-17 22:44:19
          compiled from "application\views\templates\especialista\paciente.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1946652e09698a2e765-25839632%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2f8abf6c34cea6d4adb01a052ba974972236b43b' => 
     array (
       0 => 'application\\views\\templates\\especialista\\paciente.tpl',
-      1 => 1401593488,
+      1 => 1416282256,
       2 => 'file',
     ),
   ),
@@ -26,6 +26,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fecha' => 0,
     'especialista' => 0,
     'edad' => 0,
+    'administradora' => 0,
     'consulta_tipo' => 0,
     'familiar' => 0,
     'i' => 0,
@@ -74,29 +75,36 @@ especialista/consulta">
 " required>
               <div class="row">
                     <div class="form-group">
-                       <label class="control-label col-md-6">Edad: </label>
-                       <div class="col-md-6">
+                       <label class="control-label col-md-5">Edad: </label>
+                       <div class="col-md-7">
                           <p class="form-control-static"><?php echo $_smarty_tpl->tpl_vars['edad']->value;?>
 </p>
                        </div>
                     </div>
                     <div class="form-group">
-                       <label class="control-label col-md-6">Fecha nacimiento:</label>
-                       <div class="col-md-6">
+                       <label class="control-label col-md-5">Fecha nacimiento:</label>
+                       <div class="col-md-7">
                           <p class="form-control-static"><?php echo $_smarty_tpl->tpl_vars['paciente']->value['fecha_nacimiento'];?>
 </p>
                        </div>
                     </div>
                     <div class="form-group">
-                       <label class="control-label col-md-6">Tipo de Consulta:</label>
-                       <div class="col-md-6">
+                       <label class="control-label col-md-5">Administradora:</label>
+                       <div class="col-md-7">
+                          <p class="form-control-static"><?php echo $_smarty_tpl->tpl_vars['administradora']->value;?>
+</p>
+                       </div>
+                    </div>
+                    <div class="form-group">
+                       <label class="control-label col-md-5">Tipo de Consulta:</label>
+                       <div class="col-md-7">
                           <p class="form-control-static"><?php echo $_smarty_tpl->tpl_vars['consulta_tipo']->value;?>
 </p>
                        </div>
                     </div>
                     <div class="form-group">
-                       <label class="control-label col-md-6">Familiares:</label>
-                        <div class="col-md-6">
+                       <label class="control-label col-md-5">Familiares:</label>
+                        <div class="col-md-7">
                             <?php  $_smarty_tpl->tpl_vars['i'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['i']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['familiar']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['i']->key => $_smarty_tpl->tpl_vars['i']->value) {

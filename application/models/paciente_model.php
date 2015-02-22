@@ -41,7 +41,7 @@ class Paciente_model extends CI_Model {
                         . 'TIMESTAMPDIFF(YEAR, fecha_nacimiento, (CURRENT_DATE) ) AS anhos, '
                         . 'TIMESTAMPDIFF(MONTH, fecha_nacimiento, (CURRENT_DATE) ) AS meses, '
                         . 'TIMESTAMPDIFF(DAY, fecha_nacimiento, (CURRENT_DATE) ) AS dias');
-                
+        
         if ($paciente_id == 0){
             $query = $this->db->get('paciente');
             return $query->result_array();

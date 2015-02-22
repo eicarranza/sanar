@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-09-30 13:29:37
+<?php /* Smarty version Smarty-3.1.15, created on 2014-10-02 10:38:38
          compiled from "application\views\templates\paciente\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1235952842fa8e8d4b3-02068251%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '77addb3c23b828fb8f24dfb8951f821b32945185' => 
     array (
       0 => 'application\\views\\templates\\paciente\\index.tpl',
-      1 => 1412098169,
+      1 => 1412260711,
       2 => 'file',
     ),
     '69edd536ad22a96e4e860274a997e06eee10299c' => 
@@ -512,9 +512,9 @@ assets/scripts/table-managed.js"></script>
   jQuery(document).ready(function() {       
         App.init();
         TableManaged.init();
-         
+        
         $("#contenedor").load("<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
-/pacientes/lista");
+/pacientes/lista/0/edwar");
         $(document).on("click", "#pagination-digg li a", function(e){
             e.preventDefault();
            var href = $(this).attr("href");
@@ -529,6 +529,7 @@ assets/scripts/table-managed.js"></script>
             $("#contenedor").load(href);
         });
   });
+  
 </script>
 
 

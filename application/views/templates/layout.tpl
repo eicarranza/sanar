@@ -218,6 +218,25 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                     </a>
                     <ul class="sub-menu">
                        <li >
+                          <a href="#">
+                          Información institucional</a>
+                       </li>
+                       <li >
+                          <a href="{$url}configuracion/administradora/index">
+                          Configurar administradora</a>
+                       </li>
+                    </ul>
+                </li>
+            {/if}
+            {if $i.rol_id==9}
+                <li class="{if $menu_id==4} active {/if}">
+                    <a href="javascript:;">
+                    <i class="icon-cogs"></i> 
+                    <span class="title">Configuración</span>
+                    <span class="arrow "></span>
+                    </a>
+                    <ul class="sub-menu">
+                       <li >
                           <a href="form_controls.html">
                           Información institucional</a>
                        </li>

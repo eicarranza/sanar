@@ -143,8 +143,15 @@ $route['administrador/perfiles'] = 'administrador/perfiles';
 $route['configuracion/getMunicipio/(:any)'] = 'configuracion/getMunicipio/$1';
 $route['configuracion/getServicios/(:any)'] = 'configuracion/getServicios/$1';
 
+$route['configuracion/administradora/index'] = 'configuracion/administradora/index';
+$route['configuracion/administradora/nuevo'] = 'configuracion/administradora/nuevo';
+$route['administrador/administradora/nuevo/(:any)'] = 'administrador/nuevo/$1';
+
 /* REPORTES */
 $route['reportes/historia'] = 'reportes/historia/paciente';
+$route['reportes/informeQuirurgico'] = 'reportes/historia/informeQuirurgico';
+$route['reportes/imprimirEvolucion'] = 'reportes/historia/imprimirEvolucion';
+$route['reportes/imprimirNotas'] = 'reportes/historia/imprimirNotas';
 $route['reportes/interconsulta'] = 'reportes/historia/interconsulta';
 $route['reportes/tratamiento'] = 'reportes/historia/tratamiento';
 $route['reportes/formula'] = 'reportes/historia/formula';

@@ -10,6 +10,12 @@ class Configuracion_model extends CI_Model {
         $query = $this->db->get('cnf_grupo_sanguineo');
         return $query->result_array();
     }
+    
+    public function get_administradora()
+    {
+        $query = $this->db->get('cnf_administradora');
+        return $query->result_array();
+    }
 
     public function get_tipo_documento()
     {

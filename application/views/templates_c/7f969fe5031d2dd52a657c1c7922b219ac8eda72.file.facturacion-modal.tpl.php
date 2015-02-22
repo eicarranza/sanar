@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-05-17 01:28:54
+<?php /* Smarty version Smarty-3.1.15, created on 2014-11-17 22:18:29
          compiled from "application\views\templates\agenda\facturacion-modal.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2345353042ddb6b6e53-19558928%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7f969fe5031d2dd52a657c1c7922b219ac8eda72' => 
     array (
       0 => 'application\\views\\templates\\agenda\\facturacion-modal.tpl',
-      1 => 1400304494,
+      1 => 1416280502,
       2 => 'file',
     ),
   ),
@@ -23,10 +23,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'especialista' => 0,
     'paciente' => 0,
     'cita_id' => 0,
-    '_concepto_servicio' => 0,
+    '_administradora' => 0,
     'i' => 0,
     'existe_factura' => 0,
     'facturacion' => 0,
+    '_concepto_servicio' => 0,
     '_servicio' => 0,
     'url' => 0,
   ),
@@ -54,6 +55,23 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 " required>
           </div>
        </div>
+        <div class="form-group">
+            <label  class="col-md-4 control-label">Administradora:</label>
+            <div class="col-md-8">
+                <select  class="form-control" name="administradora_id"  id="administradora_id" >
+                    <option value="0">- SELECCIONE -</option>
+                    <?php  $_smarty_tpl->tpl_vars['i'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['i']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['_administradora']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['i']->key => $_smarty_tpl->tpl_vars['i']->value) {
+$_smarty_tpl->tpl_vars['i']->_loop = true;
+?>
+                            <option value="<?php echo $_smarty_tpl->tpl_vars['i']->value['id'];?>
+" <?php if (($_smarty_tpl->tpl_vars['existe_factura']->value)) {?><?php if (($_smarty_tpl->tpl_vars['facturacion']->value['administradora_id']==$_smarty_tpl->tpl_vars['i']->value['id'])) {?>selected<?php }?><?php }?>><?php echo $_smarty_tpl->tpl_vars['i']->value['descripcion'];?>
+</option>
+                    <?php } ?>
+                </select>
+          </div>
+        </div>
         <div class="form-group">
             <label  class="col-md-4 control-label">Concepto Servicio:</label>
             <div class="col-md-8">

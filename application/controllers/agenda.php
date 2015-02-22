@@ -188,6 +188,7 @@ class Agenda extends Private_Controller {
         $especialista = "";
         $paciente = "";
         
+        $administradora = $this->Configuracion_model->get_administradora();
         $concepto_servicio = $this->Configuracion_model->get_conceptoServicio();
         $departamento = $this->Configuracion_model->get_departamento();
         
@@ -212,6 +213,7 @@ class Agenda extends Private_Controller {
                 'cita' => $cita,
                 'especialista' => $especialista,
                 'paciente' => $paciente,
+                '_administradora' => $administradora,
                 '_concepto_servicio' => $concepto_servicio,
                 '_servicio' => $servicios,
                 'cita_id' => $cita_id,

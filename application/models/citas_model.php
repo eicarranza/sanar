@@ -289,9 +289,11 @@ class Citas_model extends CI_Model {
     // RETORNA LA FACTURA SOBRE CITA, SI EXISTE
     public function get_facturacion($cita_id = 0)
     {
-        $this->db->select('citas_id, fecha, consulta_tipo, valor, ct.descripcion, concepto_servicio_id ');
+        $this->db->select('citas_id, fecha, consulta_tipo, valor, administradora_id,'
+                            . 'adm.descripcion as administradora, ct.descripcion, concepto_servicio_id ');
         $this->db->from('citas_facturacion as cf');
         $this->db->join('cnf_concepto_servicio_tipo as ct', 'cf.consulta_tipo = ct.id', 'left');
+        $this->db->join('cnf_administradora as adm', 'cf.administradora_id = adm.id', 'left');
         $this->db->where(array('citas_id' => $cita_id));
         $query = $this->db->get();
         //print $this->db->last_query();
@@ -307,20 +309,23 @@ class Citas_model extends CI_Model {
         $fecha = date("Y-m-d");
         $servicio_id = $this->input->post('servicio_id');
         $valor = $this->input->post('valor');
+        $administradora_id = $this->input->post('administradora_id');
         
-        $sql = 'INSERT INTO citas_facturacion(citas_id, fecha, consulta_tipo, valor)
-                VALUES (?, ?, ?, ?)
+        $sql = 'INSERT INTO citas_facturacion(citas_id, fecha, consulta_tipo, valor, administradora_id)
+                VALUES (?, ?, ?, ?, ?)
                 ON DUPLICATE KEY UPDATE 
                     fecha = VALUES(fecha),
                     consulta_tipo = VALUES(consulta_tipo), 
-                    valor = VALUES(valor)';
+                    valor = VALUES(valor),
+                    administradora_id = VALUES(administradora_id)';
 
         $query = $this->db->query($sql, array( $cita_id, 
                                        $fecha, 
                                        $servicio_id, 
-                                       $valor
+                                       $valor,
+                                       $administradora_id
                                       )); 
-        //print $this->db->last_query();
+        print $this->db->last_query();
         return ;
     }
  

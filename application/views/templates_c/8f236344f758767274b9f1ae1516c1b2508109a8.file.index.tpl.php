@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-07-14 00:51:08
+<?php /* Smarty version Smarty-3.1.15, created on 2014-11-17 23:04:24
          compiled from "application\views\templates\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:592052830847f33246-77764146%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -19,7 +19,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '69edd536ad22a96e4e860274a997e06eee10299c' => 
     array (
       0 => 'application\\views\\templates\\layout.tpl',
-      1 => 1401593640,
+      1 => 1416283441,
       2 => 'file',
     ),
   ),
@@ -284,6 +284,26 @@ agenda/cirugia">
                 </li>
             <?php }?>
             <?php if ($_smarty_tpl->tpl_vars['i']->value['rol_id']==3) {?>
+                <li class="<?php if ($_smarty_tpl->tpl_vars['menu_id']->value==4) {?> active <?php }?>">
+                    <a href="javascript:;">
+                    <i class="icon-cogs"></i> 
+                    <span class="title">Configuración</span>
+                    <span class="arrow "></span>
+                    </a>
+                    <ul class="sub-menu">
+                       <li >
+                          <a href="#">
+                          Información institucional</a>
+                       </li>
+                       <li >
+                          <a href="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
+configuracion/administradora/index">
+                          Configurar administradora</a>
+                       </li>
+                    </ul>
+                </li>
+            <?php }?>
+            <?php if ($_smarty_tpl->tpl_vars['i']->value['rol_id']==9) {?>
                 <li class="<?php if ($_smarty_tpl->tpl_vars['menu_id']->value==4) {?> active <?php }?>">
                     <a href="javascript:;">
                     <i class="icon-cogs"></i> 

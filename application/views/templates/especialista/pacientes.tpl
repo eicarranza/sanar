@@ -95,7 +95,7 @@
 	 App.init();
 	 TableManaged.init();
          
-        $("#contenedor").load("{$url}/especialista/pacientesLista");
+        $("#contenedor").load("{$url}especialista/pacientesLista");
         $(document).on("click", "#pagination-digg li a", function(e){
             e.preventDefault();
             var href = $(this).attr("href");
@@ -105,7 +105,7 @@
         $( "#txt_buscar" ).keyup(function() {
             var buscar = $( '#txt_buscar' ).val();
             buscar = buscar.replace(" ", "");
-            var href = "{$url}/especialista/pacientesLista/0/"+buscar;
+            var href = "{$url}especialista/pacientesLista/0/"+buscar;
             $("#contenedor").load(href);
         });
   });

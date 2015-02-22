@@ -601,7 +601,7 @@ $apertura_hc = true;
         $pdf->SetFont('helvetica', 'B', 11);
         $pdf->Ln(10);
         $pdf->SetFillColor(216, 216, 216);
-        $pdf->Cell(120, 6, '10. IMPRESIÓN DIAGNÓSTICA', 1, 1, '', 1);
+        $pdf->Cell(120, 6, '9. IMPRESIÓN DIAGNÓSTICA', 1, 1, '', 1);
         $pdf->Ln(4);
         $pdf->SetFont('helvetica', '', 10);
 
@@ -633,7 +633,7 @@ $apertura_hc = true;
         $pdf->SetFont('helvetica', 'B', 11);
         $pdf->Ln(10);
         $pdf->SetFillColor(216, 216, 216);
-        $pdf->Cell(120, 6, '9. TRATAMIENTO', 1, 1, '', 1);
+        $pdf->Cell(120, 6, '10. TRATAMIENTO', 1, 1, '', 1);
         $pdf->Ln(4);
         $pdf->SetFont('helvetica', '', 10);
 
